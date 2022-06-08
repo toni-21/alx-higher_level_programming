@@ -1,17 +1,14 @@
 #!/usr/bin/python3
 def roman_to_int(roman_string):
-    if roman_string is None or type(roman_string) == str:
-        return (0)
-
-    roman = {'I':1,'V':5,'X':10,'L':50,'C':100,'D':500,'M':1000,'IV':4,'IX':9,'XL':40,'XC':90,'CD':400,'CM':900}
-    i = 0
-    num = 0
-    while i < len(roman_string):
-        if i+1<len(roman_string) and roman_string[i:i+2] in roman:
-            num+=roman[roman_string[i:i+2]]
-            i+=2
-        else:
-            #print(i)
-            num+=roman[roman_string[i]]
-            i+=1
-    return (num)
+    if roman_string and type(roman_string) == str:
+        rn = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}
+        nun_rn = [s for s in roman_string]
+        res = 0
+        l = len(nun_rn)
+        for i in range(l):
+            if i < l - 1 and rn.get(nun_rn[i]) < rn.get(nun_rn[i + 1]):
+                res -= rn.get(nun_rn[i])
+            else:
+                res += rn.get(nun_rn[i])
+        return (res)
+    return (0)
